@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Мой ID</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #000;
+      font-family: system-ui, sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="out">Загрузка…</div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    const u = tg.initDataUnsafe?.user;
+    const out = document.getElementById("out");
+
+    if (!u) {
+      out.textContent = "Открой через Telegram Mini App";
+    } else {
+      out.innerHTML = 
+        ID: ${u.id}<br>
+        Ник: ${u.username ?? "нет"}<br>
+        Имя: ${u.first_name ?? ""}
+      ;
+    }
+  </script>
+</body>
+</html>
